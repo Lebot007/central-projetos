@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<meta name="description" content="Central de projetos pessoal de Lebot007." />
+<title>Central de Projetos · Lebot007</title>
+<style>
+:root{--bg:#070b16;--bg2:#0b1224;--cyan:#22d3ee;--blue:#3b82f6;--violet:#8b5cf6;--text:#e8eefc;--muted:#a6b3cc;--dim:#7c8aa5;--glass:rgba(255,255,255,.055);--stroke:rgba(255,255,255,.13);--radius:18px;--shadow:0 18px 45px rgba(0,0,0,.45);--focus:0 0 0 3px rgba(34,211,238,.55);--font:"Inter","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.55;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.aurora{position:fixed;inset:-25%;z-index:-2;filter:blur(90px);opacity:.55;background:radial-gradient(38% 40% at 18% 22%,rgba(59,130,246,.55),transparent 60%),radial-gradient(34% 36% at 82% 18%,rgba(34,211,238,.45),transparent 62%),radial-gradient(40% 42% at 55% 88%,rgba(139,92,246,.5),transparent 60%);animation:drift 26s ease-in-out infinite alternate}
+.grid-overlay{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(circle at 50% 0%,#000 20%,transparent 78%)}
+@keyframes drift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(4%,3%,0) scale(1.08)}100%{transform:translate3d(-4%,-2%,0) scale(1.04)}}
+.wrap{width:min(1240px,100% - 2.5rem);margin-inline:auto}
+header.hero{padding:clamp(3.2rem,9vw,6.5rem) 0 clamp(1.8rem,4vw,2.6rem);text-align:center}
+.badge{display:inline-flex;align-items:center;gap:.5rem;padding:.42rem .9rem;border-radius:999px;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.35);color:#7fe9fb;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 0 rgba(34,211,238,.7);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+h1{margin:1.1rem 0 .6rem;font-size:clamp(2.1rem,6.4vw,4rem);font-weight:800;letter-spacing:-.03em;line-height:1.08;background:linear-gradient(100deg,#fff 10%,var(--cyan) 40%,var(--blue) 65%,var(--violet) 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{margin:0 auto;max-width:60ch;color:var(--muted);font-size:clamp(.98rem,2.2vw,1.12rem)}
+.stats{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:1.4rem}
+.stat{padding:.5rem .95rem;border-radius:12px;background:var(--glass);border:1px solid var(--stroke);font-size:.85rem;color:var(--muted)}
+.stat b{color:var(--text);font-variant-numeric:tabular-nums}
+.toolbar{display:grid;gap:1rem;margin:0 0 1.6rem}
+.search{position:relative}
+.search svg{position:absolute;left:.95rem;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--dim)}
+input[type=search]{width:100%;padding:.95rem 1rem .95rem 2.9rem;border-radius:14px;color:var(--text);background:rgba(255,255,255,.06);border:1px solid var(--stroke);font:inherit;font-size:1rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:border-color .2s,box-shadow .2s}
+input[type=search]::placeholder{color:var(--dim)}
+input[type=search]:hover{border-color:rgba(255,255,255,.24)}
+.chips{display:flex;flex-wrap:wrap;gap:.55rem}
+.chip{cursor:pointer;border:1px solid var(--stroke);background:rgba(255,255,255,.05);color:var(--muted);padding:.5rem 1rem;border-radius:999px;font:inherit;font-size:.87rem;font-weight:600;transition:transform .18s,background .18s,color .18s,border-color .18s}
+.chip:hover{transform:translateY(-2px);color:var(--text);border-color:rgba(255,255,255,.28)}
+.chip[aria-pressed=true]{background:linear-gradient(120deg,rgba(34,211,238,.9),rgba(139,92,246,.9));color:#04121b;border-color:transparent;box-shadow:0 8px 22px rgba(59,130,246,.28)}
+.sortbar{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;font-size:.85rem;color:var(--dim)}
+select{background:rgba(255,255,255,.06);color:var(--text);border:1px solid var(--stroke);border-radius:10px;padding:.45rem .7rem;font:inherit;font-size:.87rem;cursor:pointer}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:none;box-shadow:var(--focus);border-radius:12px}
+.skip{position:absolute;left:-9999px;top:0;z-index:50;background:var(--cyan);color:#04121b;padding:.7rem 1.1rem;border-radius:0 0 12px 0;font-weight:700}
+.skip:focus{left:0}
+.grid{display:grid;grid-template-columns:1fr;gap:1.1rem;list-style:none;margin:0;padding:0}
+@media (min-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:980px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1300px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{position:relative;display:flex;flex-direction:column;gap:.75rem;padding:1.25rem;border-radius:var(--radius);background:var(--glass);border:1px solid var(--stroke);box-shadow:var(--shadow);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);transition:transform .25s cubic-bezier(.2,.7,.3,1),border-color .25s,box-shadow .25s;animation:rise .5s both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s;background:linear-gradient(120deg,rgba(34,211,238,.16),transparent 45%,rgba(139,92,246,.16))}
+.card:hover{transform:translateY(-6px);border-color:rgba(34,211,238,.42);box-shadow:0 26px 55px rgba(0,0,0,.55)}
+.card:hover::after{opacity:1}
+.card.featured{border-color:rgba(139,92,246,.5)}
+.card-top{display:flex;align-items:flex-start;gap:.6rem;justify-content:space-between}
+.card h3{margin:0;font-size:1.06rem;font-weight:700;letter-spacing:-.01em;word-break:break-word}
+.pin{flex:none;font-size:.66rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#f0e4ff;background:linear-gradient(120deg,rgba(139,92,246,.95),rgba(34,211,238,.8));padding:.28rem .55rem;border-radius:7px}
+.desc{margin:0;color:var(--muted);font-size:.9rem;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{display:inline-flex;align-items:center;gap:.35rem;font-size:.75rem;font-weight:600;color:var(--muted);background:rgba(255,255,255,.06);border:1px solid var(--stroke);padding:.25rem .55rem;border-radius:8px}
+.lang-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);flex:none}
+.meta{display:flex;flex-wrap:wrap;gap:.9rem;font-size:.8rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.meta span{display:inline-flex;align-items:center;gap:.32rem}
+.open{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;margin-top:auto;padding:.65rem 1rem;border-radius:11px;font-size:.9rem;font-weight:700;text-decoration:none;color:#dff8ff;border:1px solid rgba(34,211,238,.4);background:rgba(34,211,238,.1);transition:background .2s,transform .2s}
+.open:hover{background:rgba(34,211,238,.22);transform:translateY(-1px)}
+.cat{position:absolute;top:-9px;right:14px;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#04121b;background:var(--cyan);padding:.18rem .5rem;border-radius:6px}
+.state{padding:2.5rem 1rem;text-align:center;color:var(--muted)}
+.skeleton{height:210px;border-radius:var(--radius);border:1px solid var(--stroke);background:linear-gradient(100deg,rgba(255,255,255,.04) 30%,rgba(255,255,255,.11) 50%,rgba(255,255,255,.04) 70%);background-size:220% 100%;animation:shimmer 1.4s linear infinite}
+@keyframes shimmer{to{background-position:-220% 0}}
+.err{border:1px solid rgba(248,113,113,.45);background:rgba(248,113,113,.1);color:#ffd9d9;padding:1rem 1.2rem;border-radius:14px;margin-bottom:1.2rem;font-size:.92rem}
+footer{margin:4rem 0 2.5rem;padding-top:1.6rem;border-top:1px solid var(--stroke);display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;justify-content:space-between;align-items:center;color:var(--dim);font-size:.87rem}
+footer a{color:#8fd9ff;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+footer a:hover{border-bottom-color:#8fd9ff}
+.nav-links{display:flex;flex-wrap:wrap;gap:1.1rem}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.aurora{opacity:.4}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo principal</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grid-overlay" aria-hidden="true"></div>
+<header class="hero wrap">
+  <span class="badge"><span class="dot" aria-hidden="true"></span>Online · atualizado em tempo real</span>
+  <h1>Central de Projetos</h1>
+  <p class="sub">Hub único dos meus repositórios no GitHub: web, dados, IA e design. Os cards abaixo são lidos diretamente da API pública do GitHub, sem build e sem backend.</p>
+  <div class="stats" id="stats" role="status" aria-live="polite"></div>
+</header>
+<main id="main" class="wrap" tabindex="-1">
+  <section class="toolbar" aria-label="Filtros e busca de projetos">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="q" placeholder="Buscar por nome ou descrição…" aria-label="Buscar projetos por nome ou descrição" autocomplete="off" />
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filtrar por categoria"></div>
+    <div class="sortbar">
+      <label for="sort">Ordenar por:</label>
+      <select id="sort" aria-label="Ordenar projetos">
+        <option value="stars">Estrelas (depois atualização)</option>
+        <option value="updated">Atualização mais recente</option>
+        <option value="name">Nome (A–Z)</option>
+      </select>
+      <span id="count" aria-live="polite"></span>
+    </div>
+  </section>
+  <div id="error" class="err" hidden role="alert"></div>
+  <ul class="grid" id="grid" aria-label="Lista de projetos"></ul>
+  <p class="state" id="empty" hidden>Nenhum projeto corresponde aos filtros atuais.</p>
+</main>
+<footer class="wrap">
+  <nav class="nav-links" aria-label="Links institucionais">
+    <a href="https://github.com/Lebot007" target="_blank" rel="noopener noreferrer">github.com/Lebot007</a>
+    <a href="https://github.com/Lebot007/central-projetos" target="_blank" rel="noopener noreferrer">central-projetos</a>
+    <a href="https://github.com/Lebot007/ai-agent-toolkit-2026" target="_blank" rel="noopener noreferrer">ai-agent-toolkit-2026</a>
+  </nav>
+  <span>Feito com HTML, CSS e JS nativos · dados via GitHub REST API · <span id="year"></span></span>
+</footer>
+<script>
+(() => {
+  "use strict";
+  const OWNER = "Lebot007";
+  const API = `https://api.github.com/users/${OWNER}/repos?per_page=100&sort=updated`;
+  const CATS = ["Todos","Web","Dados","IA","Design","Portifolio"];
+  const FEATURED = ["alisson tattoo","alisson-tattoo","organizacao financeira","organização financeira","kaneki","shingeki","supplies","portfolio","portifolio","ai-agent-toolkit-2026"];
+  const KW = {
+    Web:["web","html","css","js","javascript","typescript","react","vue","angular","site","landing","frontend","fullstack","pwa","app","next","svelte","node","api","bot","telegram","chrome"],
+    Dados:["sql","database","banco","dados","data","etl","analitic","dashboard","power bi","powerbi","oracle","tasy","hmdcc","health","python","pandas","bi","relatorio","financeira","financeiro","kaneki","supplies"],
+    IA:["ai","ia-","agent","agente","llm","gpt","gemini","claude","openai","ml","machine learning","chatbot","prompt","toolkit","rag","vision","neural","kaneki"],
+    Design:["design","figma","ui","ux","art","arte","tattoo","ilustr","logo","brand","identidade","css","anim","motion","shingeki"],
+    Portifolio:["portfolio","portifolio","curriculo","currículo","cv","resume","showcase","central","hub","meus projetos"]
+  };
+  const $ = s => document.querySelector(s);
+  const norm = s => (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[-_\s]+/g," ").trim();
+  const esc = s => (s||"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const state = { repos: [], cat: "Todos", q: "", sort: "stars" };
+  function categorize(r){
+    const hay = norm([r.name, r.description, ...(r.topics||[])].join(" "));
+    for (const c of ["Portifolio","IA","Design","Dados","Web"]) {
+      if (KW[c].some(k => hay.includes(norm(k)))) return c;
+    }
+    return "Web";
+  }
+  const isFeatured = r => FEATURED.some(f => norm(r.name).includes(norm(f)));
+  function prepare(){
+    state.repos = state.repos.map(r => ({ ...r, _cat: categorize(r), _feat: isFeatured(r) })).filter(r => !r.fork && r.name !== "central-projetos");
+  }
+  function visible(){
+    const q = norm(state.q);
+    let out = state.repos.filter(r => (state.cat === "Todos" || r._cat === state.cat) && (!q || norm(r.name).includes(q) || norm(r.description).includes(q)));
+    const cmp = {
+      stars: (a,b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.pushed_at) - new Date(a.pushed_at)),
+      updated: (a,b) => new Date(b.pushed_at) - new Date(a.pushed_at),
+      name: (a,b) => a.name.localeCompare(b.name,"pt-BR")
+    }[state.sort];
+    return out.sort(cmp);
+  }
+  const fmtDate = iso => new Date(iso).toLocaleDateString("pt-BR",{day:"2-digit",month:"short",year:"numeric"});
+  function renderStats(){
+    const total = state.repos.length;
+    const stars = state.repos.reduce((s,r)=>s+r.stargazers_count,0);
+    const cats = new Set(state.repos.map(r=>r._cat)).size;
+    $("#stats").innerHTML = `<span class="stat"><b>${total}</b> projetos</span><span class="stat"><b>${stars}</b> estrelas acumuladas</span><span class="stat"><b>${cats}</b> categorias</span>`;
+  }
+  function render(){
+    const list = visible(), grid = $("#grid");
+    $("#count").textContent = `· ${list.length} exibido${list.length===1?"":"s"}`;
+    $("#empty").hidden = list.length > 0;
+    grid.innerHTML = list.map((r,i) => `
+      <li>
+        <article class="card${r._feat?" featured":""}" style="animation-delay:${Math.min(i*35,420)}ms" aria-label="Projeto ${esc(r.name)}">
+          <span class="cat">${esc(r._cat)}</span>
+          <div class="card-top">
+            <h3>${esc(r.name)}</h3>
+            ${r._feat ? '<span class="pin" title="Projeto em destaque">Em destaque</span>' : ""}
+          </div>
+          <p class="desc">${esc(r.description || "Sem descrição informada.")}</p>
+          <div class="tags">
+            ${r.language ? `<span class="tag"><span class="lang-dot" aria-hidden="true"></span>${esc(r.language)}</span>` : ""}
+            ${(r.topics||[]).slice(0,3).map(t=>`<span class="tag">#${esc(t)}</span>`).join("")}
+          </div>
+          <div class="meta">
+            <span aria-label="${r.stargazers_count} estrelas">★ ${r.stargazers_count}</span>
+            <span aria-label="${r.forks_count} forks">⑂ ${r.forks_count}</span>
+            <span>Atualizado em ${fmtDate(r.pushed_at)}</span>
+          </div>
+          <a class="open" href="${esc(r.homepage && /^https?:\/\//i.test(r.homepage) ? r.homepage : r.html_url)}" target="_blank" rel="noopener noreferrer">
+            ${(r.homepage && /^https?:\/\//i.test(r.homepage)) ? "Abrir site" : "Ver no GitHub"}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </article>
+      </li>`).join("");
+  }
+  function skeletons(n=8){ $("#grid").innerHTML = Array.from({length:n},()=>'<li><div class="skeleton"></div></li>').join(""); }
+  function buildChips(){
+    $("#chips").innerHTML = CATS.map(c => `<button class="chip" type="button" data-cat="${c}" aria-pressed="${c===state.cat}">${c}</button>`).join("");
+    $("#chips").addEventListener("click", e => {
+      const b = e.target.closest(".chip"); if(!b) return;
+      state.cat = b.dataset.cat;
+      $("#chips").querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x===b)));
+      render();
+    });
+  }
+  async function load(){
+    skeletons();
+    try {
+      const res = await fetch(API, { headers:{ Accept:"application/vnd.github+json" } });
+      if (!res.ok) throw new Error(`HTTP ${res.status}${res.status===403?" (limite de requisições da API atingido)":""}`);
+      const data = await res.json();
+      if (!Array.isArray(data)) throw new Error("Resposta inesperada da API do GitHub.");
+      state.repos = data;
+      prepare(); renderStats(); render();
+    } catch (err) {
+      $("#grid").innerHTML = "";
+      const el = $("#error");
+      el.hidden = false;
+      el.textContent = `Não foi possível carregar os projetos (${err.message}). Recarregue a página em instantes.`;
+    }
+  }
+  $("#q").addEventListener("input", e => { state.q = e.target.value; render(); });
+  $("#sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+  $("#year").textContent = new Date().getFullYear();
+  buildChips();
+  load();
+})();
+</script>
+</body>
+</html>
