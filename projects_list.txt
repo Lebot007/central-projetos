@@ -1,0 +1,62 @@
+=== hmdcc-site-premium ===
+homepage: https://lebot007.github.io/hmdcc-site-premium/
+pagesActive: True
+desc: 'Portal institucional premium do Hospital Metropolitano Dr. Célio de Castro (HMDCC) — Next.js 16, TypeScript, Tailwind CSS 4. 100% SUS, referência em alta complexidade.'
+language: TypeScript
+featured: None
+
+=== debateia ===
+homepage: https://lebot007.github.io/debateia/
+pagesActive: True
+desc: 'Arena de debates entre IAs: várias IAs debatem entre si e uma IA Chefe sintetiza a resposta final. 100% no navegador, sem API.'
+language: TypeScript
+featured: None
+
+=== site-tematico-Kaneki ===
+homepage: https://lebot007.github.io/site-tematico-Kaneki/
+pagesActive: True
+desc: None
+language: HTML
+featured: None
+
+=== shingeki ===
+homepage: https://lebot007.github.io/shingeki/
+pagesActive: True
+desc: '進撃 — Portfólio de Lebot (developer & creator) com temática Shingeki no Kyojin. HTML único, sem build.'
+language: HTML
+featured: None
+
+=== SiteSupplies ===
+homepage: https://supplieslocacao.vercel.app/
+pagesActive: False
+desc: None
+language: HTML
+featured: None
+
+=== site-tattoo-alisson ===
+homepage: https://site-tattoo-alisson.vercel.app
+pagesActive: False
+desc: None
+language: HTML
+featured: None
+
+=== ControleFinanceiro2.0 ===
+homepage: None
+pagesActive: False
+desc: None
+language: HTML
+featured: None
+
+=== Lebot007 ===
+homepage: None
+pagesActive: False
+desc: None
+language: None
+featured: None
+
+=== ai-agent-toolkit-2026 ===
+homepage: None
+pagesActive: False
+desc: 'Curated toolkit of best AI agent skills, plugins, MCP servers, sandboxes, and automation tools from GitHub'
+language: None
+featured: None
