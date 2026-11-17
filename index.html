@@ -1,979 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Central de Projetos de Lebot007 - portfólio com 17 projetos publicados e ativos no GitHub Pages.">
-<meta name="theme-color" content="#04070d">
-<meta property="og:title" content="Central de Projetos | Lebot007">
-<meta property="og:description" content="Portfólio com 17 projetos ativos no GitHub Pages.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Central de Projetos · Lebot007</title>
+<meta name="description" content="Todos os projetos de Lebot007 publicados no GitHub Pages, com a tela inicial real de cada site, busca e filtros.">
+<meta name="theme-color" content="#0a0b0d">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
-<title>Central de Projetos | Lebot007</title>
+<meta property="og:title" content="Central de Projetos · Lebot007">
+<meta property="og:description" content="Todos os sites que estão no ar, num só lugar.">
+<meta property="og:url" content="https://lebot007.github.io/central-projetos/">
+<meta property="og:image" content="https://lebot007.github.io/central-projetos/covers/central-projetos.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#04070d; --bg2:#080d17; --bg3:#0e1626;
-  --card:rgba(15,23,40,.72); --card-hi:rgba(22,33,55,.9);
-  --line:rgba(110,130,165,.18); --line-hi:rgba(56,220,255,.42);
-  --tx:#eef4fb; --tx2:#9fb0c8; --tx3:#68799a;
-  --cyan:#22d3ee; --blue:#3b82f6; --purple:#a855f7; --pink:#ec4899; --amber:#f5b301; --green:#22c55e;
-  --grad:linear-gradient(135deg,#0ea5e9 0%,#22d3ee 45%,#a855f7 100%);
-  --r-sm:8px; --r-md:13px; --r-lg:18px; --r-xl:24px;
-  --e1:150ms cubic-bezier(.4,0,.2,1);
-  --e2:300ms cubic-bezier(.4,0,.2,1);
-  --e3:520ms cubic-bezier(.22,1,.36,1);
-  --sans:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-  --mono:'JetBrains Mono','SF Mono',Consolas,monospace;
-}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-[hidden]{display:none!important}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--sans);background:var(--bg);color:var(--tx);line-height:1.6;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(34,211,238,.16),transparent),
-             radial-gradient(ellipse 60% 45% at 82% 78%,rgba(168,85,247,.14),transparent),
-             radial-gradient(ellipse 50% 35% at 8% 55%,rgba(236,72,153,.11),transparent)}
-.skip{position:absolute;left:50%;top:-120px;transform:translateX(-50%);z-index:9999;padding:12px 26px;border-radius:var(--r-md);background:var(--grad);color:#04070d;font-weight:700;text-decoration:none;transition:top var(--e1)}
-.skip:focus{top:14px;outline:2px solid var(--cyan);outline-offset:3px}
-h1,h2,h3{font-weight:700;line-height:1.15;letter-spacing:-.02em}
-p{color:var(--tx2)}
-a{color:var(--cyan);text-decoration:none;transition:color var(--e1)}
-a:hover{color:var(--purple)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
-img{max-width:100%;display:block}
-.wrap{position:relative;z-index:10;width:100%;max-width:1400px;margin:0 auto;padding:0 20px}
-
-/* decorative layers - never intercept clicks */
-.deco{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.35;animation:drift 22s ease-in-out infinite}
-.b1{width:420px;height:420px;background:var(--cyan);top:-120px;left:-120px}
-.b2{width:320px;height:320px;background:var(--purple);bottom:-70px;right:-70px;animation-delay:-8s}
-.b3{width:260px;height:260px;background:var(--pink);top:38%;left:3%;animation-delay:-15s}
-.b4{width:230px;height:230px;background:var(--blue);bottom:26%;right:8%;animation-delay:-4s}
-@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(34px,-30px) scale(1.06)}50%{transform:translate(-24px,42px) scale(.94)}75%{transform:translate(42px,22px) scale(1.03)}}
-.gridlines{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:linear-gradient(rgba(120,140,175,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(120,140,175,.035) 1px,transparent 1px);
-  background-size:64px 64px;animation:gridpan 24s linear infinite}
-@keyframes gridpan{to{transform:translate(64px,64px)}}
-#bgCanvas,#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
-
-/* HERO */
-.hero{min-height:92vh;display:flex;align-items:center;justify-content:center;padding:110px 0 70px;text-align:center}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;border-radius:100px;
-  background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.32);color:var(--cyan);
-  font-size:.84rem;font-weight:600;letter-spacing:.01em;margin-bottom:26px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blip 2s ease-in-out infinite}
-@keyframes blip{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.75)}}
-.hero h1{font-size:clamp(2.6rem,7vw,5rem);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:18px}
-.hero .sub{font-size:clamp(1.05rem,2.4vw,1.32rem);max-width:660px;margin:0 auto}
-.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(24px,5vw,64px);margin-top:52px}
-.stat{display:flex;flex-direction:column;align-items:center;gap:2px}
-.stat b{font-family:var(--mono);font-size:clamp(2rem,4.6vw,3.1rem);font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.stat span{font-size:.76rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.11em;font-weight:600}
-
-/* CONTROLS */
-.controls{position:sticky;top:0;z-index:60;padding:22px 0;background:linear-gradient(180deg,var(--bg) 55%,rgba(4,7,13,.86) 100%);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.controls .row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center}
-.search{position:relative;flex:1 1 320px;max-width:430px}
-.search input{width:100%;padding:14px 16px 14px 46px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);color:var(--tx);font:inherit;font-size:.97rem;transition:border-color var(--e2),box-shadow var(--e2)}
-.search input::placeholder{color:var(--tx3)}
-.search input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,.16),0 0 34px rgba(34,211,238,.14)}
-.search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--tx3);pointer-events:none}
-.chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
-.chip{padding:10px 19px;border-radius:100px;background:var(--card);border:1px solid var(--line);color:var(--tx2);font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;transition:all var(--e2);white-space:nowrap}
-.chip:hover{border-color:var(--line-hi);color:var(--tx);transform:translateY(-2px)}
-.chip[aria-pressed="true"]{background:var(--grad);border-color:transparent;color:#04070d;box-shadow:0 5px 22px rgba(34,211,238,.32)}
-
-/* SECTION */
-.sec{padding:58px 0 90px}
-.sec-head{text-align:center;margin-bottom:42px}
-.sec-head h2{font-size:clamp(1.7rem,3.8vw,2.6rem);margin-bottom:10px}
-.sec-head p{font-size:.98rem}
-.count{margin-top:14px;font-family:var(--mono);font-size:.85rem;color:var(--cyan)}
-
-/* GRID */
-.grid{display:grid;gap:26px;grid-template-columns:1fr}
-@media(min-width:660px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1060px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1480px){.grid{grid-template-columns:repeat(4,1fr)}}
-
-/* CARD */
-@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-.card{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);
-  border-radius:var(--r-xl);overflow:hidden;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  transition:transform var(--e3),border-color var(--e2),box-shadow var(--e3);
-  animation:cardIn .55s cubic-bezier(.22,1,.36,1) both}
-.card:hover{transform:translateY(-8px);border-color:var(--line-hi);box-shadow:0 22px 55px rgba(0,0,0,.55),0 0 46px rgba(34,211,238,.14)}
-.card-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,#0b1220,#131f36);border:1px solid var(--line)}
-.card-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--e3),filter var(--e2);filter:grayscale(0%)}
-.card:hover .card-img img{transform:scale(1.04);filter:grayscale(0%) brightness(1.05)}
-.card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.25) 100%);pointer-events:none;z-index:2}
-.img-failed{display:none}
-.image-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--grad)}
-.image-fallback span{font-size:3rem;font-weight:700;color:#04070d}
-.badges{position:absolute;top:13px;left:13px;display:flex;flex-wrap:wrap;gap:6px;z-index:3}
-.badge{padding:5px 11px;border-radius:100px;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;backdrop-filter:blur(10px)}
-.badge-featured{background:linear-gradient(135deg,#f5b301,#ffd75e);color:#241a00;box-shadow:0 3px 14px rgba(245,179,1,.45)}
-.badge-category{background:rgba(6,11,20,.88);color:var(--cyan);border:1px solid var(--line)}
-.card-body{padding:22px;display:flex;flex-direction:column;gap:15px;flex:1}
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.card-top h3{font-size:1.14rem;line-height:1.32}
-.lang{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--r-sm);background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.22);color:var(--cyan);font-family:var(--mono);font-size:.72rem;font-weight:600;white-space:nowrap;flex-shrink:0}
-.lang::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
-.card-desc{font-size:.895rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:4.2em}
-.meta{display:flex;flex-wrap:wrap;gap:15px;padding-top:13px;border-top:1px solid var(--line);margin-top:auto}
-.meta span{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.76rem;color:var(--tx3)}
-.meta .stars{color:var(--amber)} .meta .stars svg{color:var(--amber)}
-.meta .forks{color:var(--purple)} .meta .forks svg{color:var(--purple)}
-.actions{display:flex;gap:11px;margin-top:4px}
-.btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:11px 16px;
-  border-radius:var(--r-md);font:inherit;font-size:.875rem;font-weight:700;cursor:pointer;border:1px solid transparent;transition:all var(--e2);text-align:center}
-.btn-primary{background:var(--grad);color:#04070d;box-shadow:0 5px 20px rgba(34,211,238,.3)}
-.btn-primary:hover{color:#04070d;transform:translateY(-2px);box-shadow:0 9px 30px rgba(34,211,238,.42)}
-.btn-ghost{background:var(--bg3);color:var(--tx);border-color:var(--line)}
-.btn-ghost:hover{background:var(--card-hi);color:var(--tx);border-color:var(--line-hi)}
-.empty{grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--tx3)}
-.empty svg{width:62px;height:62px;margin:0 auto 18px;opacity:.45}
-.empty h3{color:var(--tx2);margin-bottom:8px}
-
-/* FOOTER */
-footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gradient(180deg,transparent,var(--bg2));margin-top:30px}
-.f-brand{text-align:center;margin-bottom:34px}
-.f-logo{font-size:1.45rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:7px}
-.f-tag{font-size:.9rem;color:var(--tx3)}
-.f-links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 30px;margin-bottom:34px}
-.f-links a{color:var(--tx2);font-size:.92rem;font-weight:500}
-.f-links a:hover{color:var(--cyan)}
-.f-bottom{padding-top:26px;border-top:1px solid var(--line);text-align:center;color:var(--tx3);font-size:.8rem;display:flex;flex-direction:column;gap:6px}
-.f-bottom a{color:var(--tx3);text-decoration:underline;text-decoration-color:rgba(110,130,165,.4)}
-.f-bottom a:hover{color:var(--cyan)}
-::-webkit-scrollbar{width:9px;height:9px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:#1e2a44;border-radius:5px;border:2px solid var(--bg)}
-::-webkit-scrollbar-thumb:hover{background:#2c3d61}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 <a class="skip" href="#projetos">Pular para os projetos</a>
 
-<div class="deco" aria-hidden="true">
-  <div class="blob b1"></div><div class="blob b2"></div>
-  <div class="blob b3"></div><div class="blob b4"></div>
-</div>
-<div class="gridlines" aria-hidden="true"></div>
-<canvas id="particles" aria-hidden="true"></canvas>
-
-<div class="wrap">
-  <header class="hero">
-    <div>
-      <span class="eyebrow"><span class="dot" aria-hidden="true"></span>17 projetos ativos no GitHub Pages</span>
-      <h1>Central de Projetos</h1>
-      <p class="sub">Portfólio curado de projetos publicados e funcionando. Design, dados, web e inteligência artificial.</p>
-      <div class="stats">
-        <div class="stat"><b id="statProjects">17</b><span>Projetos</span></div>
-        <div class="stat"><b id="statStars">0</b><span>Estrelas</span></div>
-        <div class="stat"><b id="statCategories">4</b><span>Categorias</span></div>
-        <div class="stat"><b id="statFeatured">5</b><span>Destaques</span></div>
-      </div>
-    </div>
-  </header>
-</div>
-
-<section class="controls" aria-label="Filtros e busca">
-  <div class="wrap">
-    <div class="row">
-      <div class="search">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="M20.5 20.5l-4.2-4.2"/></svg>
-        <input id="searchInput" type="search" placeholder="Buscar projeto por nome ou descrição..." aria-label="Buscar projetos" autocomplete="off">
-      </div>
-      <div class="chips" role="group" aria-label="Filtrar por categoria">
-        <button class="chip" type="button" data-filter="all" aria-pressed="true">Todos</button>
-        <button class="chip" type="button" data-filter="featured" aria-pressed="false">Destaques</button>
-        <button class="chip" type="button" data-filter="Web" aria-pressed="false">Web</button>
-        <button class="chip" type="button" data-filter="Dados" aria-pressed="false">Dados</button>
-        <button class="chip" type="button" data-filter="IA" aria-pressed="false">IA</button>
-        <button class="chip" type="button" data-filter="Design" aria-pressed="false">Design</button>
-      </div>
-    </div>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="./" aria-label="Central de Projetos — início">
+      <span class="brand-mark" aria-hidden="true">L7</span>
+      <span class="brand-text">Lebot007<small>central de projetos</small></span>
+    </a>
+    <nav class="topnav" aria-label="Principal">
+      <a href="#projetos">Projetos</a>
+      <a class="btn btn-ghost btn-sm" href="https://github.com/Lebot007" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </nav>
   </div>
-</section>
+</header>
 
-<main class="sec" id="projetos">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Projetos Publicados</h2>
-      <p>Só repositórios com GitHub Pages ativo - clique em Abrir Site para visitar</p>
-      <p class="count" id="resultCount" aria-live="polite">17 projetos exibidos</p>
+<main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse" aria-hidden="true"></span><span id="liveCount">—</span> sites no ar pelo GitHub Pages</p>
+        <h1>Tudo o que eu coloquei no ar, <em>num só lugar.</em></h1>
+        <p class="lede">Web, dados, IA, design e jogos. Cada capa é a tela inicial real do site — clique para ampliar ou abra direto.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+          <a class="btn btn-ghost" href="https://github.com/Lebot007" target="_blank" rel="noopener noreferrer">Perfil no GitHub</a>
+        </div>
+        <dl class="stats" id="stats"></dl>
+      </div>
+      <div class="hero-stack" id="heroStack" aria-hidden="true"></div>
     </div>
+  </section>
 
-    <div class="grid" id="projectsGrid" role="list">
-        <article class="project-card" role="listitem"
-                 data-name="site-tattoo-alisson"
-                 data-title="site tattoo alisson"
-                 data-desc="site profissional para estúdio de tatuagem com design dark, galeria de trabalhos, agendamento e informações do artista."
-                 data-category="Design"
-                 data-featured="true"
-                 data-stars="0" style="animation-delay:0ms">
-          <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/site-tattoo-alisson" alt="Preview do projeto Site Tattoo Alisson"
-                 width="640" height="400" loading="eager" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>S</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-featured">★ Destaque</span><span class="badge badge-category">Design</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Site Tattoo Alisson</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Site profissional para estúdio de tatuagem com design dark, galeria de trabalhos, agendamento e informações do artista.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2025-01-15T10:30:00Z">15/01/2025</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/site-tattoo-alisson/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Site Tattoo Alisson"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/site-tattoo-alisson" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Site Tattoo Alisson no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="ControleFinanceiro2.0"
-                 data-title="controle financeiro 2.0"
-                 data-desc="sistema completo de controle financeiro pessoal com dashboard, categorização de gastos, metas e relatórios visuais."
-                 data-category="Dados"
-                 data-featured="true"
-                 data-stars="0" style="animation-delay:45ms">
-          <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/ControleFinanceiro2.0" alt="Preview do projeto Controle Financeiro 2.0"
-                 width="640" height="400" loading="eager" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>C</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-featured">★ Destaque</span><span class="badge badge-category">Dados</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Controle Financeiro 2.0</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Sistema completo de controle financeiro pessoal com dashboard, categorização de gastos, metas e relatórios visuais.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2025-01-10T14:20:00Z">10/01/2025</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/ControleFinanceiro2.0/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Controle Financeiro 2.0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/ControleFinanceiro2.0" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Controle Financeiro 2.0 no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="site-tematico-Kaneki"
-                 data-title="site temático kaneki"
-                 data-desc="portfólio temático inspirado em tokyo ghoul com animações css avançadas, modo kaneki/centopeia e design imersivo."
-                 data-category="Design"
-                 data-featured="true"
-                 data-stars="0" style="animation-delay:90ms">
-          <div class="card-image">
-            <img src="screenshots/site-tematico-Kaneki.png" alt="Preview do projeto Site Temático Kaneki"
-                 width="640" height="400" loading="eager" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>S</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-featured">★ Destaque</span><span class="badge badge-category">Design</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Site Temático Kaneki</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Portfólio temático inspirado em Tokyo Ghoul com animações CSS avançadas, modo kaneki/centopeia e design imersivo.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2025-01-08T09:15:00Z">08/01/2025</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/site-tematico-Kaneki/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Site Temático Kaneki"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/site-tematico-Kaneki" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Site Temático Kaneki no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="shingeki"
-                 data-title="shingeki portfolio"
-                 data-desc="progresso — portfólio de lebot (developer &amp; creator) com temática shingeki no kyojin. html único, sem build."
-                 data-category="Design"
-                 data-featured="true"
-                 data-stars="0" style="animation-delay:135ms">
-          <div class="card-image">
-            <img src="screenshots/shingeki.png" alt="Preview do projeto Shingeki Portfolio"
-                 width="640" height="400" loading="eager" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>S</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-featured">★ Destaque</span><span class="badge badge-category">Design</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Shingeki Portfolio</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Progresso — Portfólio de Lebot (developer &amp; creator) com temática Shingeki no Kyojin. HTML único, sem build.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2025-01-05T16:45:00Z">05/01/2025</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/shingeki/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Shingeki Portfolio"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/shingeki" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Shingeki Portfolio no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="SiteSupplies"
-                 data-title="site supplies"
-                 data-desc="site institucional para supplies locação com catálogo de equipamentos, solicitação de orçamento e design corporativo."
-                 data-category="Web"
-                 data-featured="true"
-                 data-stars="0" style="animation-delay:180ms">
-          <div class="card-image">
-            <img src="screenshots/SiteSupplies.png" alt="Preview do projeto Site Supplies"
-                 width="640" height="400" loading="eager" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>S</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-featured">★ Destaque</span><span class="badge badge-category">Web</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Site Supplies</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Site institucional para Supplies Locação com catálogo de equipamentos, solicitação de orçamento e design corporativo.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2025-01-03T11:00:00Z">03/01/2025</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/SiteSupplies/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Site Supplies"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/SiteSupplies" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Site Supplies no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="hmdcc-site-premium"
-                 data-title="hmdcc site premium"
-                 data-desc="site premium para hmdcc com design sofisticado, animações suaves e seções institucionais completas."
-                 data-category="Web"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:225ms">
-          <div class="card-image">
-            <img src="screenshots/hmdcc-site-premium.png" alt="Preview do projeto HMDCC Site Premium"
-                 width="640" height="400" loading="eager" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>H</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">Web</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">HMDCC Site Premium</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Site premium para HMDCC com design sofisticado, animações suaves e seções institucionais completas.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-12-28T10:00:00Z">28/12/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/hmdcc-site-premium/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto HMDCC Site Premium"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/hmdcc-site-premium" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de HMDCC Site Premium no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="debateia"
-                 data-title="debate ia"
-                 data-desc="plataforma de debates com inteligência artificial, múltiplos agentes debatendo tópicos complexos em tempo real."
-                 data-category="IA"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:270ms">
-          <div class="card-image">
-            <img src="screenshots/debateia.png" alt="Preview do projeto Debate IA"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>D</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">IA</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Debate IA</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Plataforma de debates com inteligência artificial, múltiplos agentes debatendo tópicos complexos em tempo real.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-12-20T15:30:00Z">20/12/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/debateia/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Debate IA"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/debateia" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Debate IA no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="nevoa-chat"
-                 data-title="nevoa chat"
-                 data-desc="interface de chat moderna com suporte a múltiplos modelos, streaming, markdown e persistência local."
-                 data-category="IA"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:315ms">
-          <div class="card-image">
-            <img src="screenshots/nevoa-chat.png" alt="Preview do projeto Nevoa Chat"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>N</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">IA</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Nevoa Chat</h3>
-              <span class="card-language">JavaScript</span>
-            </div>
-            <p class="card-description">Interface de chat moderna com suporte a múltiplos modelos, streaming, markdown e persistência local.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-12-15T12:00:00Z">15/12/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/nevoa-chat/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Nevoa Chat"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/nevoa-chat" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Nevoa Chat no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="central-projetos"
-                 data-title="central projetos"
-                 data-desc="central de projetos pessoal — este próprio site que você está visitando."
-                 data-category="Web"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:360ms">
-          <div class="card-image">
-            <img src="screenshots/central-projetos.png" alt="Preview do projeto Central Projetos"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>C</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">Web</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Central Projetos</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Central de projetos pessoal — este próprio site que você está visitando.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-12-10T08:00:00Z">10/12/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/central-projetos/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Central Projetos"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/central-projetos" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Central Projetos no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="site-joao"
-                 data-title="site joão"
-                 data-desc="portfólio pessoal minimalista com tema escuro, animações de entrada e seções de projetos e contato."
-                 data-category="Web"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:405ms">
-          <div class="card-image">
-            <img src="screenshots/site-joao.png" alt="Preview do projeto Site João"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>S</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">Web</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Site João</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Portfólio pessoal minimalista com tema escuro, animações de entrada e seções de projetos e contato.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-12-05T14:00:00Z">05/12/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/site-joao/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Site João"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/site-joao" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Site João no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="controlecrunch"
-                 data-title="controle crunch"
-                 data-desc="sistema de controle de academia com treinos, progressão de cargas, histórico e estatísticas visuais."
-                 data-category="Dados"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:450ms">
-          <div class="card-image">
-            <img src="screenshots/controlecrunch.png" alt="Preview do projeto Controle Crunch"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>C</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">Dados</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Controle Crunch</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Sistema de controle de academia com treinos, progressão de cargas, histórico e estatísticas visuais.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-11-28T10:00:00Z">28/11/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/controlecrunch/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Controle Crunch"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/controlecrunch" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Controle Crunch no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="a3controlecarros"
-                 data-title="a3 controle carros"
-                 data-desc="gerenciador de frota veicular com manutenções, abastecimentos, documentos e alertas de vencimento."
-                 data-category="Dados"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:495ms">
-          <div class="card-image">
-            <img src="screenshots/a3controlecarros.png" alt="Preview do projeto A3 Controle Carros"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>A</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">Dados</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">A3 Controle Carros</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Gerenciador de frota veicular com manutenções, abastecimentos, documentos e alertas de vencimento.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-11-20T09:00:00Z">20/11/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/a3controlecarros/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto A3 Controle Carros"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/a3controlecarros" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de A3 Controle Carros no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="IA-auditoria-presidentes"
-                 data-title="ia auditoria presidentes"
-                 data-desc="análise de discursos presidenciais com ia, extração de temas, sentimento e fact-checking automatizado."
-                 data-category="IA"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:540ms">
-          <div class="card-image">
-            <img src="screenshots/IA-auditoria-presidentes.png" alt="Preview do projeto IA Auditoria Presidentes"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>I</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">IA</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">IA Auditoria Presidentes</h3>
-              <span class="card-language">Python</span>
-            </div>
-            <p class="card-description">Análise de discursos presidenciais com IA, extração de temas, sentimento e fact-checking automatizado.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-11-15T16:00:00Z">15/11/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/IA-auditoria-presidentes/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto IA Auditoria Presidentes"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/IA-auditoria-presidentes" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de IA Auditoria Presidentes no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="ativa-tech"
-                 data-title="ativa tech"
-                 data-desc="landing page para empresa de tecnologia com design moderno, animações de scroll e formulário de contato."
-                 data-category="Web"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:585ms">
-          <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/ativa-tech" alt="Preview do projeto Ativa Tech"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>A</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">Web</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Ativa Tech</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Landing page para empresa de tecnologia com design moderno, animações de scroll e formulário de contato.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-11-10T11:00:00Z">10/11/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/ativa-tech/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Ativa Tech"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/ativa-tech" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Ativa Tech no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="site-carro"
-                 data-title="site carro"
-                 data-desc="showcase de veículo com galeria 3d, especificações técnicas e design automotivo imersivo."
-                 data-category="Web"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:630ms">
-          <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/site-carro" alt="Preview do projeto Site Carro"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>S</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">Web</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Site Carro</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Showcase de veículo com galeria 3D, especificações técnicas e design automotivo imersivo.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-11-05T10:00:00Z">05/11/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/site-carro/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Site Carro"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/site-carro" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Site Carro no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="hacker_game_site"
-                 data-title="hacker game site"
-                 data-desc="jogo estilo hacker terminal com puzzles de programação, narrativa cyberpunk e múltiplos finais."
-                 data-category="Web"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:675ms">
-          <div class="card-image">
-            <img src="screenshots/hacker_game_site.png" alt="Preview do projeto Hacker Game Site"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>H</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">Web</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">Hacker Game Site</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Jogo estilo hacker terminal com puzzles de programação, narrativa cyberpunk e múltiplos finais.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-10-28T14:00:00Z">28/10/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/hacker_game_site/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto Hacker Game Site"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/hacker_game_site" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de Hacker Game Site no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="project-card" role="listitem"
-                 data-name="A3_Terc_S1"
-                 data-title="a3 terc s1"
-                 data-desc="projeto acadêmico a3 - terceiro semestre com documentação técnica e implementação prática."
-                 data-category="Dados"
-                 data-featured="false"
-                 data-stars="0" style="animation-delay:720ms">
-          <div class="card-image">
-            <img src="screenshots/A3_Terc_S1.png" alt="Preview do projeto A3 Terc S1"
-                 width="640" height="400" loading="lazy" decoding="async"
-                 onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
-            <div class="image-fallback" hidden>
-              <span>A</span>
-            </div>
-          </div>
-          <div class="card-badges" aria-hidden="true"><span class="badge badge-category">Dados</span></div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">A3 Terc S1</h3>
-              <span class="card-language">HTML</span>
-            </div>
-            <p class="card-description">Projeto acadêmico A3 - Terceiro Semestre com documentação técnica e implementação prática.</p>
-            <div class="card-meta">
-              <span class="meta-item stars" title="Estrelas"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>0</span>
-              <span class="meta-item forks" title="Forks"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v3M6 15.5V13a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.5"/></svg>0</span>
-              <span class="meta-item" title="Atualizado em"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><time datetime="2024-10-20T09:00:00Z">20/10/2024</time></span>
-            </div>
-            <div class="card-footer">
-              <a class="btn btn-primary" href="https://lebot007.github.io/A3_Terc_S1/" target="_blank" rel="noopener noreferrer"
-                 aria-label="Abrir o site do projeto A3 Terc S1"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-8.5 8.5"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8.5A1.5 1.5 0 0 1 5.5 7H10"/></svg><span>Abrir Site</span></a>
-              <a class="btn btn-ghost" href="https://github.com/Lebot007/A3_Terc_S1" target="_blank" rel="noopener noreferrer"
-                 aria-label="Ver o código de A3 Terc S1 no GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg><span>Código</span></a>
-            </div>
-          </div>
-        </article>
-      <div class="empty" id="emptyState" hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="M20.5 20.5l-4.2-4.2"/><path d="M8.5 8.5l5 5M13.5 8.5l-5 5"/></svg>
-        <h3>Nenhum projeto encontrado</h3>
-        <p>Ajuste a busca ou escolha outra categoria.</p>
+  <section id="projetos" class="projects" aria-labelledby="projetos-titulo">
+    <div class="toolbar-shell">
+      <div class="wrap toolbar">
+        <h2 id="projetos-titulo" class="sr-only">Projetos</h2>
+        <label class="search">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="sr-only">Buscar projetos</span>
+          <input id="q" type="search" placeholder="Buscar projetos ou tecnologias" autocomplete="off" spellcheck="false">
+          <kbd aria-hidden="true">/</kbd>
+        </label>
+        <div class="chips" id="chips" role="group" aria-label="Filtrar por categoria"></div>
+        <label class="sort">
+          <span class="sr-only">Ordenar</span>
+          <select id="sort">
+            <option value="destaque">Destaques</option>
+            <option value="recentes">Mais recentes</option>
+            <option value="az">A–Z</option>
+          </select>
+        </label>
       </div>
     </div>
-  </div>
+
+    <div class="wrap">
+      <p class="result" id="result" aria-live="polite"></p>
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty" hidden>
+        <p>Nenhum projeto encontrado para essa busca.</p>
+        <button class="btn btn-ghost" type="button" id="clear">Limpar filtros</button>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="f-brand">
-      <div class="f-logo">Central de Projetos</div>
-      <p class="f-tag">Feito por Lebot007</p>
-    </div>
-    <nav class="f-links" aria-label="Links">
-      <a href="https://github.com/Lebot007" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://github.com/Lebot007/central-projetos" target="_blank" rel="noopener noreferrer">Repositório deste site</a>
-      <a href="https://github.com/Lebot007?tab=repositories" target="_blank" rel="noopener noreferrer">Todos os repositórios</a>
-    </nav>
-    <div class="f-bottom">
-      <span>&copy; 2026 Lebot007</span>
-      <span>Dados e imagens de preview via GitHub</span>
-    </div>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p>© <span id="year">2026</span> João Vitor Alves Rodrigues · Lebot007</p>
+    <p><a href="https://github.com/Lebot007/central-projetos" target="_blank" rel="noopener noreferrer">Código desta página</a></p>
   </div>
 </footer>
 
-<script>
-(function(){
-  'use strict';
-  var grid = document.getElementById('projectsGrid');
-  if(!grid) return;
-  var cards = [].slice.call(grid.querySelectorAll('.project-card'));
-  var emptyState = document.getElementById('emptyState');
-  var searchInput = document.getElementById('searchInput');
-  var chips = [].slice.call(document.querySelectorAll('.chip'));
-  var elProjects = document.getElementById('statProjects');
-  var elStars = document.getElementById('statStars');
-  var elCats = document.getElementById('statCategories');
-  var elFeat = document.getElementById('statFeatured');
-  var elCount = document.getElementById('resultCount');
+<dialog class="viewer" id="viewer" aria-labelledby="viewerTitle">
+  <div class="viewer-box">
+    <div class="viewer-bar">
+      <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="viewer-url" id="viewerUrl"></span>
+      <button class="icon-btn" type="button" id="viewerClose" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="viewer-img"><img id="viewerImg" alt="" decoding="async"></div>
+    <div class="viewer-foot">
+      <div>
+        <h3 id="viewerTitle"></h3>
+        <p id="viewerDesc"></p>
+      </div>
+      <div class="viewer-actions">
+        <a class="btn btn-primary" id="viewerOpen" target="_blank" rel="noopener noreferrer">Abrir site</a>
+        <a class="btn btn-ghost" id="viewerCode" target="_blank" rel="noopener noreferrer">Código</a>
+      </div>
+    </div>
+  </div>
+</dialog>
 
-  var filter = 'all';
-  var query = '';
+<noscript><p class="wrap noscript">Ative o JavaScript para ver a lista de projetos, ou acesse <a href="https://github.com/Lebot007">github.com/Lebot007</a>.</p></noscript>
 
-  function applyFilters(){
-    var visible = 0, stars = 0, feat = 0;
-    var cats = {};
-    for(var i=0;i<cards.length;i++){
-      var c = cards[i];
-      var cat = c.getAttribute('data-category');
-      var isFeat = c.getAttribute('data-featured') === 'true';
-
-      var okFilter;
-      if(filter === 'all'){ okFilter = true; }
-      else if(filter === 'featured'){ okFilter = isFeat; }
-      else { okFilter = (cat === filter); }
-
-      var hay = c.getAttribute('data-title') + ' ' + c.getAttribute('data-desc') + ' ' + c.getAttribute('data-name');
-      var okQuery = (query === '') || (hay.indexOf(query) !== -1);
-
-      var show = okFilter && okQuery;
-      c.hidden = !show;
-      if(show){
-        visible++;
-        cats[cat] = true;
-        if(isFeat) feat++;
-        stars += parseInt(c.getAttribute('data-stars') || '0', 10) || 0;
-      }
-    }
-    if(elProjects) elProjects.textContent = visible;
-    if(elStars) elStars.textContent = stars;
-    if(elCats) elCats.textContent = Object.keys(cats).length;
-    if(elFeat) elFeat.textContent = feat;
-    if(elCount) elCount.textContent = visible + (visible === 1 ? ' projeto exibido' : ' projetos exibidos');
-    if(emptyState) emptyState.hidden = (visible !== 0);
-  }
-
-  if(searchInput){
-    var t;
-    searchInput.addEventListener('input', function(e){
-      clearTimeout(t);
-      var v = e.target.value;
-      t = setTimeout(function(){ query = v.trim().toLowerCase(); applyFilters(); }, 140);
-    });
-  }
-
-  chips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      chips.forEach(function(c){ c.setAttribute('aria-pressed','false'); });
-      chip.setAttribute('aria-pressed','true');
-      filter = chip.getAttribute('data-filter');
-      applyFilters();
-    });
-  });
-
-  // star counts for the counter
-  cards.forEach(function(c){
-    var s = c.querySelector('.meta .stars');
-    if(s){ c.setAttribute('data-stars', (s.textContent || '0').replace(/\D/g,'') || '0'); }
-  });
-
-  applyFilters();
-})();
-
-/* 3D tilt - progressive enhancement */
-(function(){
-  'use strict';
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if(window.matchMedia('(hover: none)').matches) return;
-  var cards = document.querySelectorAll('.project-card');
-  [].forEach.call(cards, function(card){
-    card.addEventListener('mousemove', function(e){
-      var r = card.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width - .5;
-      var py = (e.clientY - r.top) / r.height - .5;
-      card.style.transform = 'perspective(1100px) rotateX(' + (-py*7).toFixed(2) + 'deg) rotateY(' + (px*7).toFixed(2) + 'deg) translateY(-8px)';
-    });
-    card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
-  });
-})();
-
-/* animated background */
-(function(){
-  'use strict';
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var canvas = document.getElementById('particles');
-  if(!canvas || !canvas.getContext) return;
-  var ctx = canvas.getContext('2d');
-  var w, h, pts = [], raf;
-  var COLORS = ['#22d3ee','#a855f7','#ec4899','#3b82f6'];
-
-  function size(){
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    var n = Math.min(70, Math.round(w*h/26000));
-    pts = [];
-    for(var i=0;i<n;i++){
-      pts.push({ x:Math.random()*w, y:Math.random()*h,
-        vx:(Math.random()-.5)*.22, vy:(Math.random()-.5)*.22,
-        r:Math.random()*1.9+.7, a:Math.random()*.35+.12,
-        c:COLORS[(Math.random()*COLORS.length)|0] });
-    }
-  }
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    for(var i=0;i<pts.length;i++){
-      var p = pts[i];
-      p.x += p.vx; p.y += p.vy;
-      if(p.x < -10) p.x = w+10; if(p.x > w+10) p.x = -10;
-      if(p.y < -10) p.y = h+10; if(p.y > h+10) p.y = -10;
-      ctx.globalAlpha = p.a;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fillStyle = p.c;
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-    raf = requestAnimationFrame(draw);
-  }
-  size(); draw();
-  window.addEventListener('resize', size, {passive:true});
-  document.addEventListener('visibilitychange', function(){
-    if(document.hidden){ cancelAnimationFrame(raf); }
-    else { raf = requestAnimationFrame(draw); }
-  });
-})();
-</script>
+<script src="assets/projects.js"></script>
+<script src="assets/app.js"></script>
 </body>
 </html>

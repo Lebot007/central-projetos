@@ -1,60 +1,58 @@
-# Central de Projetos | Lebot007
+# Central de Projetos · Lebot007
 
-Portfólio curado de projetos publicados e funcionando. Design, dados, web e inteligência artificial — tudo em um só lugar.
+Vitrine de todos os meus projetos publicados no GitHub Pages, com a **tela inicial real** de cada site como capa.
 
-## 🚀 Sobre
+**No ar:** <https://lebot007.github.io/central-projetos/>
 
-Este site é a central de projetos pessoais de **Lebot007**. Aqui você encontra todos os projetos publicados e ativos no GitHub Pages, com pré-visualizações reais (screenshots capturados direto de cada site ao vivo), filtros por categoria, busca instantânea e links diretos para abrir cada projeto ou ver o código no GitHub.
+## O que tem
 
-## 📂 Projetos em Destaque
+- Capa de cada projeto com o print da página inicial (clique para ampliar)
+- Busca por nome, descrição ou tecnologia (atalho `/`)
+- Filtros por categoria (Web, Dados, IA, Design, Jogos) e ordenação
+- Filtros salvos na URL, então dá para compartilhar o link já filtrado (ex.: `?cat=IA`)
+- Layout responsivo do celular a telas ultrawide, sem rolagem lateral
+- Acessível: navegação por teclado, foco visível, `prefers-reduced-motion`
 
-| Projeto | Categoria | Descrição | Site |
-|---------|-----------|-----------|------|
-| HMDCC Site Premium | Web | Portal institucional premium do Hospital Metropolitano Dr. Célio de Castro — Next.js 16, TypeScript, Tailwind CSS 4 | [Abrir site](https://lebot007.github.io/hmdcc-site-premium/) |
-| Névoa Chat | IA | Chat anônimo e efêmero, criptografia ponta a ponta, sem servidor | [Abrir site](https://lebot007.github.io/nevoa-chat/) |
-| Shingeki Portfolio | Design | Portfólio temático Attack on Titan com partículas, tilt 3D e timeline | [Abrir site](https://lebot007.github.io/shingeki/) |
-| Site Temático Kaneki | Design | Portfólio Tokyo Ghoul com player de música e animações CSS | [Abrir site](https://lebot007.github.io/site-tematico-Kaneki/) |
-| Debate IA | IA | Arena de debates entre IAs com IA Chefe que sintetiza respostas | [Abrir site](https://lebot007.github.io/debateia/) |
-| Site Supplies | Web | Locação de impressoras Samsung com catálogo e orçamento | [Abrir site](https://supplieslocacao.vercel.app/) |
-| ParkSim | Dados | Simulador de estacionamento inteligente com banco de dados | [Abrir site](https://lebot007.github.io/a3controlecarros/) |
-| AutoConnect | Web | Rede social automotiva com GPS e feed de posts | [Abrir site](https://lebot007.github.io/site-carro/) |
-| Hacker Game | Web | Jogo estilo hacker terminal com puzzles de programação | [Abrir site](https://lebot007.github.io/hacker_game_site/) |
-| Ativa Tech | Web | Ativação de Windows e formatação de computador, 100% remoto | [Abrir site](https://lebot007.github.io/ativa-tech/) |
+## Estrutura
 
-## 🛠️ Tecnologias
+```
+index.html          página
+assets/styles.css   visual
+assets/app.js       busca, filtros, cards e visualizador
+assets/projects.js  lista de projetos (é aqui que se adiciona um novo)
+covers/             capas 1440x900 (.webp) e covers/thumb/ (800x500)
+tools/capturar.py   gera as capas automaticamente
+```
 
-- **HTML5** semântico
-- **CSS3** moderno com variáveis, grid, flexbox e animações
-- **JavaScript** vanilla para filtros, busca e interatividade
-- **GitHub Pages** para hospedagem de todos os projetos
-- **Next.js 16**, **TypeScript**, **Tailwind CSS 4** (em projetos selecionados)
+## Adicionar um projeto
 
-## 🎨 Funcionalidades
+1. Inclua um objeto em `assets/projects.js` (`repo`, `title`, `category`, `description`, `stack`, `updated`).
+2. Gere a capa: `python3 tools/capturar.py nome-do-repo` (instruções no topo do script).
+3. Sem capa ainda? Use `cover: false` e o card mostra uma prévia provisória.
 
-- ✅ **Pré-visualizações reais**: screenshots capturados diretamente de cada site ao vivo
-- ✅ **Busca instantânea**: filtre projetos por nome ou descrição
-- ✅ **Filtros por categoria**: Web, Dados, IA, Design e Destaques
-- ✅ **Design responsivo**: funciona em desktop, tablet e mobile
-- ✅ **Acessibilidade**: navegação por teclado, contraste adequado, leitores de tela
-- ✅ **Animações suaves**: partículas de fundo, tilt 3D nos cards, transições fluidas
+Não precisa de build: é HTML, CSS e JavaScript puros.
 
-## 📦 Como usar
+## Projetos
 
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/Lebot007/central-projetos.git
-   ```
-2. Abra o `index.html` no navegador — não é necessário servidor ou build
-3. Ou acesse diretamente: [lebot007.github.io/central-projetos/](https://lebot007.github.io/central-projetos/)
-
-## 🤝 Contribuindo
-
-Este é um portfólio pessoal, mas sugestões são bem-vindas. Abra uma issue ou envie um pull request.
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+| Projeto | Categoria | Site |
+|---|---|---|
+| HMDCC — Site Premium | Web | [abrir](https://lebot007.github.io/hmdcc-site-premium/) |
+| Névoa | Web | [abrir](https://lebot007.github.io/nevoa-chat/) |
+| Fluxo — Finanças Pessoais | Dados | [abrir](https://lebot007.github.io/ControleFinanceiro2.0/) |
+| DebateIA | IA | [abrir](https://lebot007.github.io/debateia/) |
+| Portfólio Shingeki | Design | [abrir](https://lebot007.github.io/shingeki/) |
+| Portfólio Kaneki | Design | [abrir](https://lebot007.github.io/site-tematico-Kaneki/) |
+| ParkSim | Dados | [abrir](https://lebot007.github.io/a3controlecarros/) |
+| João Vitor — Site Profissional | Web | [abrir](https://lebot007.github.io/site-joao/) |
+| TSUKI · Controle de Pagamentos | Dados | [abrir](https://lebot007.github.io/controlecrunch/) |
+| Contra-Argumento #1 | IA | [abrir](https://lebot007.github.io/IA-auditoria-presidentes/) |
+| AtivaTech | Web | [abrir](https://lebot007.github.io/ativa-tech/) |
+| AutoConnect | Web | [abrir](https://lebot007.github.io/site-carro/) |
+| Supplies — Locação de Impressoras | Web | [abrir](https://lebot007.github.io/SiteSupplies/) |
+| Alisson Alves Tattoo | Design | [abrir](https://lebot007.github.io/site-tattoo-alisson/) |
+| CyberSec Academy | Jogos | [abrir](https://lebot007.github.io/hacker_game_site/) |
+| Bombines — Jogo de Minas | Jogos | [abrir](https://lebot007.github.io/A3_Terc_S1/) |
 
 ---
 
-© 2026 Lebot007 — Feito com dedicação e café ☕
+© 2026 João Vitor Alves Rodrigues · Lebot007
