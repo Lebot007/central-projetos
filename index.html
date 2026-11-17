@@ -109,9 +109,10 @@ img{max-width:100%;display:block}
   transition:transform var(--e3),border-color var(--e2),box-shadow var(--e3);
   animation:cardIn .55s cubic-bezier(.22,1,.36,1) both}
 .card:hover{transform:translateY(-8px);border-color:var(--line-hi);box-shadow:0 22px 55px rgba(0,0,0,.55),0 0 46px rgba(34,211,238,.14)}
-.card-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,#0b1220,#131f36)}
-.card-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--e3)}
-.card:hover .card-img img{transform:scale(1.06)}
+.card-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,#0b1220,#131f36);border:1px solid var(--line)}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--e3),filter var(--e2);filter:grayscale(0%)}
+.card:hover .card-img img{transform:scale(1.04);filter:grayscale(0%) brightness(1.05)}
+.card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.25) 100%);pointer-events:none;z-index:2}
 .img-failed{display:none}
 .image-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--grad)}
 .image-fallback span{font-size:3rem;font-weight:700;color:#04070d}
@@ -217,7 +218,7 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="site profissional para estúdio de tatuagem com design dark, galeria de trabalhos, agendamento e informações do artista."
                  data-category="Design"
                  data-featured="true"
-                 style="animation-delay:0ms">
+                 data-stars="0" style="animation-delay:0ms">
           <div class="card-image">
             <img src="https://opengraph.githubassets.com/1/Lebot007/site-tattoo-alisson" alt="Preview do projeto Site Tattoo Alisson"
                  width="640" height="400" loading="eager" decoding="async"
@@ -252,7 +253,7 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="sistema completo de controle financeiro pessoal com dashboard, categorização de gastos, metas e relatórios visuais."
                  data-category="Dados"
                  data-featured="true"
-                 style="animation-delay:45ms">
+                 data-stars="0" style="animation-delay:45ms">
           <div class="card-image">
             <img src="https://opengraph.githubassets.com/1/Lebot007/ControleFinanceiro2.0" alt="Preview do projeto Controle Financeiro 2.0"
                  width="640" height="400" loading="eager" decoding="async"
@@ -287,9 +288,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="portfólio temático inspirado em tokyo ghoul com animações css avançadas, modo kaneki/centopeia e design imersivo."
                  data-category="Design"
                  data-featured="true"
-                 style="animation-delay:90ms">
+                 data-stars="0" style="animation-delay:90ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/site-tematico-Kaneki" alt="Preview do projeto Site Temático Kaneki"
+            <img src="screenshots/site-tematico-Kaneki.png" alt="Preview do projeto Site Temático Kaneki"
                  width="640" height="400" loading="eager" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -322,9 +323,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="progresso — portfólio de lebot (developer &amp; creator) com temática shingeki no kyojin. html único, sem build."
                  data-category="Design"
                  data-featured="true"
-                 style="animation-delay:135ms">
+                 data-stars="0" style="animation-delay:135ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/shingeki" alt="Preview do projeto Shingeki Portfolio"
+            <img src="screenshots/shingeki.png" alt="Preview do projeto Shingeki Portfolio"
                  width="640" height="400" loading="eager" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -357,9 +358,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="site institucional para supplies locação com catálogo de equipamentos, solicitação de orçamento e design corporativo."
                  data-category="Web"
                  data-featured="true"
-                 style="animation-delay:180ms">
+                 data-stars="0" style="animation-delay:180ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/SiteSupplies" alt="Preview do projeto Site Supplies"
+            <img src="screenshots/SiteSupplies.png" alt="Preview do projeto Site Supplies"
                  width="640" height="400" loading="eager" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -392,9 +393,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="site premium para hmdcc com design sofisticado, animações suaves e seções institucionais completas."
                  data-category="Web"
                  data-featured="false"
-                 style="animation-delay:225ms">
+                 data-stars="0" style="animation-delay:225ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/hmdcc-site-premium" alt="Preview do projeto HMDCC Site Premium"
+            <img src="screenshots/hmdcc-site-premium.png" alt="Preview do projeto HMDCC Site Premium"
                  width="640" height="400" loading="eager" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -427,9 +428,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="plataforma de debates com inteligência artificial, múltiplos agentes debatendo tópicos complexos em tempo real."
                  data-category="IA"
                  data-featured="false"
-                 style="animation-delay:270ms">
+                 data-stars="0" style="animation-delay:270ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/debateia" alt="Preview do projeto Debate IA"
+            <img src="screenshots/debateia.png" alt="Preview do projeto Debate IA"
                  width="640" height="400" loading="lazy" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -462,9 +463,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="interface de chat moderna com suporte a múltiplos modelos, streaming, markdown e persistência local."
                  data-category="IA"
                  data-featured="false"
-                 style="animation-delay:315ms">
+                 data-stars="0" style="animation-delay:315ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/nevoa-chat" alt="Preview do projeto Nevoa Chat"
+            <img src="screenshots/nevoa-chat.png" alt="Preview do projeto Nevoa Chat"
                  width="640" height="400" loading="lazy" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -497,9 +498,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="central de projetos pessoal — este próprio site que você está visitando."
                  data-category="Web"
                  data-featured="false"
-                 style="animation-delay:360ms">
+                 data-stars="0" style="animation-delay:360ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/central-projetos" alt="Preview do projeto Central Projetos"
+            <img src="screenshots/central-projetos.png" alt="Preview do projeto Central Projetos"
                  width="640" height="400" loading="lazy" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -532,9 +533,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="portfólio pessoal minimalista com tema escuro, animações de entrada e seções de projetos e contato."
                  data-category="Web"
                  data-featured="false"
-                 style="animation-delay:405ms">
+                 data-stars="0" style="animation-delay:405ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/site-joao" alt="Preview do projeto Site João"
+            <img src="screenshots/site-joao.png" alt="Preview do projeto Site João"
                  width="640" height="400" loading="lazy" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -567,9 +568,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="sistema de controle de academia com treinos, progressão de cargas, histórico e estatísticas visuais."
                  data-category="Dados"
                  data-featured="false"
-                 style="animation-delay:450ms">
+                 data-stars="0" style="animation-delay:450ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/controlecrunch" alt="Preview do projeto Controle Crunch"
+            <img src="screenshots/controlecrunch.png" alt="Preview do projeto Controle Crunch"
                  width="640" height="400" loading="lazy" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -602,9 +603,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="gerenciador de frota veicular com manutenções, abastecimentos, documentos e alertas de vencimento."
                  data-category="Dados"
                  data-featured="false"
-                 style="animation-delay:495ms">
+                 data-stars="0" style="animation-delay:495ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/a3controlecarros" alt="Preview do projeto A3 Controle Carros"
+            <img src="screenshots/a3controlecarros.png" alt="Preview do projeto A3 Controle Carros"
                  width="640" height="400" loading="lazy" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -637,9 +638,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="análise de discursos presidenciais com ia, extração de temas, sentimento e fact-checking automatizado."
                  data-category="IA"
                  data-featured="false"
-                 style="animation-delay:540ms">
+                 data-stars="0" style="animation-delay:540ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/IA-auditoria-presidentes" alt="Preview do projeto IA Auditoria Presidentes"
+            <img src="screenshots/IA-auditoria-presidentes.png" alt="Preview do projeto IA Auditoria Presidentes"
                  width="640" height="400" loading="lazy" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -672,7 +673,7 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="landing page para empresa de tecnologia com design moderno, animações de scroll e formulário de contato."
                  data-category="Web"
                  data-featured="false"
-                 style="animation-delay:585ms">
+                 data-stars="0" style="animation-delay:585ms">
           <div class="card-image">
             <img src="https://opengraph.githubassets.com/1/Lebot007/ativa-tech" alt="Preview do projeto Ativa Tech"
                  width="640" height="400" loading="lazy" decoding="async"
@@ -707,7 +708,7 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="showcase de veículo com galeria 3d, especificações técnicas e design automotivo imersivo."
                  data-category="Web"
                  data-featured="false"
-                 style="animation-delay:630ms">
+                 data-stars="0" style="animation-delay:630ms">
           <div class="card-image">
             <img src="https://opengraph.githubassets.com/1/Lebot007/site-carro" alt="Preview do projeto Site Carro"
                  width="640" height="400" loading="lazy" decoding="async"
@@ -742,9 +743,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="jogo estilo hacker terminal com puzzles de programação, narrativa cyberpunk e múltiplos finais."
                  data-category="Web"
                  data-featured="false"
-                 style="animation-delay:675ms">
+                 data-stars="0" style="animation-delay:675ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/hacker_game_site" alt="Preview do projeto Hacker Game Site"
+            <img src="screenshots/hacker_game_site.png" alt="Preview do projeto Hacker Game Site"
                  width="640" height="400" loading="lazy" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
@@ -777,9 +778,9 @@ footer{padding:60px 0 34px;border-top:1px solid var(--line);background:linear-gr
                  data-desc="projeto acadêmico a3 - terceiro semestre com documentação técnica e implementação prática."
                  data-category="Dados"
                  data-featured="false"
-                 style="animation-delay:720ms">
+                 data-stars="0" style="animation-delay:720ms">
           <div class="card-image">
-            <img src="https://opengraph.githubassets.com/1/Lebot007/A3_Terc_S1" alt="Preview do projeto A3 Terc S1"
+            <img src="screenshots/A3_Terc_S1.png" alt="Preview do projeto A3 Terc S1"
                  width="640" height="400" loading="lazy" decoding="async"
                  onerror="this.classList.add('img-failed');this.nextElementSibling.hidden=false;">
             <div class="image-fallback" hidden>
